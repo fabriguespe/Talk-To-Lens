@@ -106,10 +106,5 @@ ORDER BY
 
 ```
 
-### Contributing
-
-If you want to contribute to the project, please follow our [contribution guide](./CONTRIBUTING.md).
-
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+### Constrains
+Because some queries can be longer than the token limit, the plugin will return a message saying that the query is too long and will provide the query as a reference and return less results.
