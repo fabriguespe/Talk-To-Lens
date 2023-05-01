@@ -58,14 +58,6 @@ What are the hours of more engagement in lens. Ranked by popularity.
 Find 5 posts where Messi is mentioned. Rank them by popularity
 ```
 
-Prompts that does't work because of complexity or scale
-
-```sh
-
-get me all the post of the last 30 days
-# or anything like that
-```
-
 ### Prompt
 
 > The plugin uses the following engineered prompt. This tables are enough for querying content, profiles, followers, dates and engagememnt (based on reactions). Collect data is excluded in this MVP.
@@ -74,7 +66,7 @@ get me all the post of the last 30 days
 
 ### Playground
 
-For a more advance and fast way to test the prompts you can copy past the [PROMPT](/PROMPT.md) description into the openai playground.
+For a more advance and fast way to test the prompts you can copy paste the [PROMPT](/PROMPT.md) description into the openai playground.
 
 [Playground](https://platform.openai.com/playground?mode=chat)
 
@@ -113,3 +105,11 @@ ORDER BY
   c.ordinal_position;
 
 ```
+
+### Contributing
+
+If you want to contribute to the project, please follow our [contribution guide](./CONTRIBUTING.md).
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
