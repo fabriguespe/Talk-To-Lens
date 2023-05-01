@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
   let rows_string = ''
   let query_sql = ''
   let question = body.question
+  let explanation_sql =''
   try {
     //Log the question
     console.log('question:', question)
@@ -60,6 +61,7 @@ export async function POST(req: NextRequest) {
     const sql = await texttosql(question)
     //Exctract the sql code block in the response
     query_sql = extractCodeBlocks(sql)
+    explanation_sql = sql.replace(query_sql, '')
     //Log the sql code block
     console.log('sql:', query_sql)
     const client = new BigQuery({ keyFilename })
@@ -75,6 +77,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         sql: query_sql,
+        explanation: explanation_sql,
         error: error.message,
         question: question,
         length: rows_string.length
@@ -96,6 +99,7 @@ export async function POST(req: NextRequest) {
     {
       rows: rows_string,
       sql: JSON.stringify(query_sql),
+      explanation: explanation_sql,
       question: JSON.stringify(question),
       length: rows_string.length
     },

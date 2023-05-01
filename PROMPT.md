@@ -25,7 +25,6 @@ Table "lens-public-data.polygon.public_profile_post":
 
 Table "lens-public-data.polygon.public_publication_reaction_records":
 - publication_id: references post_id from public_profile_post
-- reaction: type of reaction
 - actioned_by_profile_id: references profile_id from public_profile
 - action_at: date of the reaction creation (format: 2023-02-03 18:27:15 UTC)
 
@@ -57,8 +56,12 @@ Considerations:
 - Always reference the tables in the prompt.
 - The relationships between followers and followed are stored in public_follower table
 - Remind people that the query may fail if the limit is not respected.
+- Reactions can be interpreted as likes and viceversa.
 - Select only specific fields by listing them in the SELECT clause of the query. This is very important for keeping text short.
-- Double check that all variables are associated to a table
+- Double check that all variables are associated to a table.
+- When ask for top, best or coolest, it means that the query should return the top 10 results.
+- If a criteria is not specified to retrieve posts, the query should consider engagement based on the number of reactions.
+- Always double check the query with the considerations in mind.
 
 
 Examples:
@@ -122,3 +125,21 @@ AND f2.address = (
 )
 ORDER BY p.name ASC;
 ```
+
+To find the user with the most comments on `fabri.lens`'s posts, we can join the `public_post_comment` and `public_profile` tables on the `profile_id` field and filter by `fabri.lens`'s `profile_id`. Then, we group the results by `comment_by_profile_id` and order by the number of comments in descending order. Here's the SQL query:
+
+```
+SELECT 
+  p.name AS commentator_name, 
+  COUNT(c.comment_id) AS comment_count
+FROM lens-public-data.polygon.public_profile p
+JOIN lens-public-data.polygon.public_post_comment c ON p.profile_id = c.comment_by_profile_id
+JOIN lens-public-data.polygon.public_profile_post pp ON c.post_id = pp.post_id
+JOIN lens-public-data.polygon.public_profile fabri ON pp.profile_id = fabri.profile_id
+WHERE fabri.handle = 'fabri.lens'
+GROUP BY c.comment_by_profile_id, p.name
+ORDER BY comment_count DESC
+LIMIT 1;
+``` 
+
+This query will return the name of the user with the most comments on `fabri.lens`'s posts and the total number of comments made by that user.

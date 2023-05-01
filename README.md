@@ -44,38 +44,20 @@ When prompted for your website domain, type in 'http://localhost:3000'
 Tested prompts you can try and mix.
 
 ```sh
-get me 20 random posts of lens and display them as a table
+get me 20 random posts of lens
 query all posts from fabri.lens and order them by engagement
 get me the top post of today
-who is the most popular user on Lenster based on engaged posts
-who is fabri.lens
-who is the most followed user
-show me a random post from Lenster
-get me cool posts from fabri.lens
-from which lens application fabri.lens posts the most
-list all lens applications ranked by popularity
-which date was created the post with most engagegemnt.
-get the followers in common between fabri.lens and stani.lens
-who is the most popular in lens
-who comments on the following post
-who is the user with more comments made to fabri.lens
-
-1. Retrieve 20 random posts from Lens and display them as a table.
-2. Query all posts from fabri.lens and order them by engagement.
-3. Retrieve the top post of today.
-4. Who is the most popular user on Lenster based on engaged posts?
-5. Who is fabri.lens?
-6. Who is the most followed user?
-7. Show me a random post from Lenster.
-8. Retrieve cool posts from fabri.lens.
-9. From which Lens application does fabri.lens post the most?
-10. List all Lens applications ranked by popularity.
-11. On which date was the post with the most engagement created?
-12. Get the followers in common between fabri.lens and stani.lens.
-13. Who is the most popular user on Lens?
-14. Who comments on the following post?
-15. Who is the user with the most comments made to fabri.lens?
-# or anything like that
+Who is the most popular user on Lenster based on engaged posts
+Who is the user fabri.lens
+Show me a random post from Lenster
+Get me cool posts from fabri.lens
+From which lens application stani.lens posts the most
+List all lens applications ranked by popularity
+Get the followers in common between fabri.lens and stani.lens
+Who commented on the post with id 0x01-0x01c5.
+Who is the user with more comments made to fabri.lens.
+Who is the user with more likes made to fabri.lens.
+Which date was created the post with most engagement.
 ```
 
 Prompts that does't work because of complexity or scale
@@ -103,9 +85,11 @@ For a more advance and fast way to test the prompts you can copy past the PROMPT
 Pre prompting the plugin interaction can be a good way of defining goals and expectations.
 
 ```
-I'm about to begin using the Talk to Lens plugin. Please keep the following points in mind:
+I'm about to begin using the Talk to Lens plugin. Please keep the following points in mind for the result of the plugin:
 
+- Display the interpreted question
 - Always return data in table format, if possible.
-- If the data can be represented as a line chart, bar chart, or pie chart, please provide the Python code for creating the corresponding plot.
-- Always display the SQL query used to retrieve the data as a reference.
+- If the data can be represented as a line chart, bar chart, or pie chart, please provide the Python code for creating the corresponding plot. If not, dont mention it.
+- If the lenght of the response is less than 4000 display the SQL query used to retrieve the data as a reference.
+- If the lenght of the response is less than 4000 Display the query explanation
 ```
