@@ -108,3 +108,9 @@ ORDER BY
 
 ### Constrains
 Because some queries can be longer than the token limit, the plugin will return a message saying that the query is too long and will provide the query as a reference and return less results.
+
+### Resources
+Based on the following resources:
+[OpanAI Plugins Docs](https://platform.openai.com/docs/plugins/introduction)
+[nextjs-chatgpt-plugin-starter](https://github.com/dabit3/nextjs-chatgpt-plugin-starter) by [dabit3](https://github.com/dabit3)
+[lens-bigquery-with-node.js](https://github.com/dabit3/lens-bigquery-with-node.js) by [dabit3](https://github.com/dabit3)

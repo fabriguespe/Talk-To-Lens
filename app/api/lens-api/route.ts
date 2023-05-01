@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
     const rows = await client.query(options)
     rows_string = (JSON.stringify(rows[0]))
     const length=10000
-    //Check if response is too long
+    //Check if response is too long. If it is, truncate it
     if (rows_string.length > length){
       rows_string = truncateJson(rows[0],length)
       console.log('rows_truncated',rows_string.length)
