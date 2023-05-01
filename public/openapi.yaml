@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: Lens DB Plugin
+  description: Lens DB Plugin
+  version: 'v1'
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/lens-api:
+    post:
+      operationId: askLens
+      summary: Receives a question in normal language and transforms it into sql code for querying the lens database. Then returns the results displayed as a table.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/askLensRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getTableResponse'
+components:
+  schemas:
+    askLensRequest:
+      type: object
+      required:
+      - question
+      properties:
+        question:
+          type: string
+          description: A question in normal language.
+          required: true
+    getTableResponse:
+      type: object
+      properties:
+        rows:
+          type: array
+          items:
+            type: object
+          description: Display results.
+        sql:
+          type: string
+          description: Sql query used.

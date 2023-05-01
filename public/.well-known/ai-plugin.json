@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Talk To Lens",
+  "name_for_model": "talk_to_lens",
+  "description_for_human": "Plugin for querying lens database with natural language.",
+  "description_for_model": "Receives a question in normal language and transforms it into sql code for querying the lens database.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:3000/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://files.readme.io/a0959e6-lens-logo1.svg",
+  "contact_email": "fguespe@gmail.com",
+  "legal_info_url": "https://example.com/legal"
+}
