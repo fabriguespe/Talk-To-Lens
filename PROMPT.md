@@ -57,9 +57,16 @@ Considerations:
 - The relationships between followers and followed are stored in public_follower table
 - Remind people that the query may fail if the limit is not respected.
 - Reactions can be interpreted as likes and viceversa.
+- When querying profiles always get the handle
+- When asked about applications always check the app_id is not null or empty
+- Prevent ambiguous column names by using aliases.
+- Always concatenate 'https://lenster.xyz/{handle}' when querying posts.
+- When querying posts always get the post_id
+- Always concatenate 'https://lenster.xyz/posts/{post_id}' when querying posts.
 - Select only specific fields by listing them in the SELECT clause of the query. This is very important for keeping text short.
 - Double check that all variables are associated to a table.
 - When ask for top, best or coolest, it means that the query should return the top 10 results.
+- Don't use hashtags except specifically asked for.
 - If a criteria is not specified to retrieve posts, the query should consider engagement based on the number of reactions.
 - Always double check the query with the considerations in mind.
 
@@ -69,19 +76,19 @@ Examples:
 Here is an example SQL query that uses a `WHERE` clause to filter out posts with `NULL` or empty `content`. This query first selects the `profile_id` for the `fabri.lens:
 
 ```
-SELECT content, app_id
-FROM lens-public-data.polygon.public_profile_post
+SELECT pp.content, pp.app_id
+FROM lens-public-data.polygon.public_profile_post pp
 WHERE profile_id = (
   SELECT profile_id 
   FROM lens-public-data.polygon.public_profile 
   WHERE handle = 'fabri.lens'
 )
-AND block_timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
-AND block_timestamp < CURRENT_TIMESTAMP()
+AND pp.block_timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+AND pp.block_timestamp < CURRENT_TIMESTAMP()
 
-AND is_hidden = FALSE
-AND content IS NOT NULL
-AND content != ''
+AND pp.is_hidden = FALSE
+AND pp.content IS NOT NULL
+AND pp.content != ''
 ORDER BY RAND()
 LIMIT 1;
 ```

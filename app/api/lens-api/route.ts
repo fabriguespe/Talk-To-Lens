@@ -1,5 +1,6 @@
 import { BigQuery } from '@google-cloud/bigquery'
 const keyFilename = './keyfile.json'
+const client = new BigQuery({ keyFilename })
 const fs = require('fs')
 const path = require('path')
 const context = fs.readFileSync(path.resolve('', './PROMPT.md'), 'utf8')
@@ -47,6 +48,19 @@ async function texttosql(question: String) {
   return msg
 
 }
+async function  escapeJson(json: string) {
+  return json.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')
+}
+//function that receives array and returns fewer objects if the total lenght as a string is higher that the length parameter
+function truncateJson(json_array: any , length: number) {
+  let json_string = ''
+  let i = 0
+  while (json_string.length < length) {
+    json_string = json_string + JSON.stringify(json_array[i])
+    i++
+  }
+  return json_string
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -63,16 +77,21 @@ export async function POST(req: NextRequest) {
     query_sql = extractCodeBlocks(sql)
     explanation_sql = sql.replace(query_sql, '')
     //Log the sql code block
-    console.log('sql:', query_sql)
-    const client = new BigQuery({ keyFilename })
+    console.log('sql:', query_sql.trim())
     const options = { query: query_sql, location: 'US', }
     // Run the query in bigquery
     const rows = await client.query(options)
-    rows_string = JSON.stringify(rows)
+    rows_string = (JSON.stringify(rows[0]))
+    console.log('rows',rows[0].length,rows_string.length)
+    const length=10000
     //Check if response is too long
-    if (rows_string.length > 26175) throw new Error('Too long')
-    console.log('rows:', rows_string);
-
+    if (rows_string.length > length){
+      rows_string = truncateJson(rows[0],length)
+      console.log('rows_truncated',rows_string.length)
+    }
+    //escapes json characters
+    rows_string = await escapeJson(rows_string)
+    
   } catch (error: any) {
     return NextResponse.json(
       {

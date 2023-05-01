@@ -44,20 +44,17 @@ When prompted for your website domain, type in 'http://localhost:3000'
 Tested prompts you can try and mix.
 
 ```sh
-get me 20 random posts of lens
-query all posts from fabri.lens and order them by engagement
+get me 3 random posts of lens that mention messi
 get me the top post of today
 Who is the most popular user on Lenster based on engaged posts
-Who is the user fabri.lens
-Show me a random post from Lenster
-Get me cool posts from fabri.lens
+Get me details on the profile fabri.lens
+Get me 1 cool post from fabri.lens on the top 5 apps
 From which lens application stani.lens posts the most
-List all lens applications ranked by popularity
+List the top 10 lens applications ranked by popularity
 Get the followers in common between fabri.lens and stani.lens
 Who commented on the post with id 0x01-0x01c5.
 Who is the user with more comments made to fabri.lens.
-Who is the user with more likes made to fabri.lens.
-Which date was created the post with most engagement.
+What are the hours of more engagement in lens. Ranked by popularity.
 ```
 
 Prompts that does't work because of complexity or scale
@@ -76,7 +73,7 @@ get me all the post of the last 30 days
 
 ### Playground
 
-For a more advance and fast way to test the prompts you can copy past the PROMPT.md description into the openai playground.
+For a more advance and fast way to test the prompts you can copy past the [PROMPT](/PROMPT.md) description into the openai playground.
 
 [Playground](https://platform.openai.com/playground?mode=chat)
 
@@ -92,4 +89,26 @@ I'm about to begin using the Talk to Lens plugin. Please keep the following poin
 - If the data can be represented as a line chart, bar chart, or pie chart, please provide the Python code for creating the corresponding plot. If not, dont mention it.
 - If the lenght of the response is less than 4000 display the SQL query used to retrieve the data as a reference.
 - If the lenght of the response is less than 4000 Display the query explanation
+```
+
+### Queries used while building the schema prompt
+
+```
+SELECT table_name
+FROM `lens-public-data.polygon.INFORMATION_SCHEMA.TABLES`
+```
+
+```
+SELECT
+  t.table_name AS table_name,
+FROM
+  `lens-public-data.mumbai.INFORMATION_SCHEMA.TABLES` AS t
+JOIN
+  `lens-public-data.mumbai.INFORMATION_SCHEMA.COLUMNS` AS c
+ON
+  t.table_name = c.table_name
+ORDER BY
+  t.table_name,
+  c.ordinal_position;
+
 ```
