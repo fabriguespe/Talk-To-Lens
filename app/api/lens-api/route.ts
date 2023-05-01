@@ -82,12 +82,15 @@ export async function POST(req: NextRequest) {
     // Run the query in bigquery
     const rows = await client.query(options)
     rows_string = (JSON.stringify(rows[0]))
-    console.log('rows',rows[0].length,rows_string.length)
     const length=10000
     //Check if response is too long
     if (rows_string.length > length){
       rows_string = truncateJson(rows[0],length)
       console.log('rows_truncated',rows_string.length)
+    }else{
+      console.log('rows',rows[0])
+      console.log('rows',rows[0].length,rows_string.length)
+
     }
     //escapes json characters
     rows_string = await escapeJson(rows_string)

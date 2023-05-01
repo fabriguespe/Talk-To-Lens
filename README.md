@@ -55,6 +55,7 @@ Get the followers in common between fabri.lens and stani.lens
 Who commented on the post with id 0x01-0x01c5.
 Who is the user with more comments made to fabri.lens.
 What are the hours of more engagement in lens. Ranked by popularity.
+Find 5 posts where Messi is mentioned. Rank them by popularity
 ```
 
 Prompts that does't work because of complexity or scale
