@@ -115,5 +115,7 @@ As a proof of concept this was not tested rigorously, but it's a good starting p
 ### Resources
 Based on the following resources:
 [OpanAI Plugins Docs](https://platform.openai.com/docs/plugins/introduction)
+
 [nextjs-chatgpt-plugin-starter](https://github.com/dabit3/nextjs-chatgpt-plugin-starter) by [dabit3](https://github.com/dabit3)
+
 [lens-bigquery-with-node.js](https://github.com/dabit3/lens-bigquery-with-node.js) by [dabit3](https://github.com/dabit3)
