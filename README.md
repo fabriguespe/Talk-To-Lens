@@ -117,3 +117,5 @@ Based on the following resources:
 [nextjs-chatgpt-plugin-starter](https://github.com/dabit3/nextjs-chatgpt-plugin-starter) by [dabit3](https://github.com/dabit3)
 
 [lens-bigquery-with-node.js](https://github.com/dabit3/lens-bigquery-with-node.js) by [dabit3](https://github.com/dabit3)
+
+[Lens BigQuery Docs](https://docs.lens.xyz/docs/public-big-query)
