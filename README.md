@@ -80,8 +80,7 @@ I'm about to begin using the Talk to Lens plugin. Please keep the following poin
 - Display the interpreted question
 - Always return data in table format, if possible.
 - If the data can be represented as a line chart, bar chart, or pie chart, please provide the Python code for creating the corresponding plot. If not, dont mention it.
-- If the lenght of the response is less than 4000 display the SQL query used to retrieve the data as a reference.
-- If the lenght of the response is less than 4000 Display the query explanation
+- Always display and explain the query used
 ```
 
 ### Queries used while building the schema prompt
