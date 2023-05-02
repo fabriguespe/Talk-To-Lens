@@ -44,14 +44,12 @@ When prompted for your website domain, type in 'http://localhost:3000'
 Tested prompts you can try and mix.
 
 ```sh
-get me 3 random posts of lens that mention messi
 get me the top post of today
 Who is the most popular user on Lenster based on engaged posts
 Get me 1 cool post from each of the top 3 apps
 Get me details on the user 1234.lens
 From which lens application stani.lens posts the most
 List the top 10 lens applications ranked by popularity
-Get the followers in common between fabri.lens and stani.lens
 Who commented on the post with id 0x01-0x01c5.
 Who is the user with more comments made to lensprotocol.lens.
 What are the hours of more engagement in lens. Ranked by popularity.
