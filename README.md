@@ -47,20 +47,20 @@ Tested prompts you can try and mix.
 get me 3 random posts of lens that mention messi
 get me the top post of today
 Who is the most popular user on Lenster based on engaged posts
-Get me details on the profile fabri.lens
-Get me 1 cool post from fabri.lens on the top 5 apps
+Get me 1 cool post from each of the top 3 apps
+Get me details on the user 1234.lens
 From which lens application stani.lens posts the most
 List the top 10 lens applications ranked by popularity
 Get the followers in common between fabri.lens and stani.lens
 Who commented on the post with id 0x01-0x01c5.
-Who is the user with more comments made to fabri.lens.
+Who is the user with more comments made to lensprotocol.lens.
 What are the hours of more engagement in lens. Ranked by popularity.
 Find 5 posts where Messi is mentioned. Rank them by popularity
 ```
 
 ### Prompt
 
-> The plugin uses the following engineered prompt. This tables are enough for querying content, profiles, followers, dates and engagememnt (based on reactions). Collect data is excluded in this MVP.
+> The plugin uses the following engineered prompt. This tables are enough for querying content, profiles, followers, comments, hashtags, dates, apps and reactions. Collect data is excluded in this MVP.
 
 [PROMPT](/PROMPT.md)
 
@@ -108,6 +108,9 @@ ORDER BY
 
 ### Constrains
 Because some queries can be longer than the token limit, the plugin will return a message saying that the query is too long and will provide the query as a reference and return less results.
+
+## Refining
+As a proof of concept this was not tested rigorously, but it's a good starting point for a more robust plugin. Next steps would be to experiment with embeddings and trainning the model with example queries. Same query may run unsuccesfully some times but successfully when run again or i would get many network errores on large responses. Im still trying to figure out a more robust plugin response that can handle all cases.
 
 ### Resources
 Based on the following resources:

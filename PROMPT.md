@@ -58,7 +58,9 @@ Considerations:
 - The relationships between followers and followed are stored in public_follower table
 - Remind people that the query may fail if the limit is not respected.
 - Reactions can be interpreted as likes and viceversa.
+- Lenster is an application. Lens is the protocol.
 - When querying profiles always get the handle
+- This syntax is wrong "lens-public-data:polygon". Should be "lens-public-data.polygon"
 - When asked about applications always check the app_id is not null or empty
 - Prevent ambiguous column names by using aliases.
 - Always concatenate 'https://lenster.xyz/{handle}' when querying posts.
@@ -175,4 +177,5 @@ LIMIT 5;
 
 ### Errors:
 
-- Not found: Table lens-public-data:polygon.public_hashtags was not found in location US
+Not found: Table lens-public-data:polygon.public_hashtags was not found in location US
+Name owned_by not found inside pp
