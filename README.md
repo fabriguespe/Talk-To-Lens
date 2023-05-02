@@ -109,7 +109,7 @@ ORDER BY
 ### Constrains
 Because some queries can be longer than the token limit, the plugin will return a message saying that the query is too long and will provide the query as a reference and return less results.
 
-## Refining
+### Refining
 As a proof of concept this was not tested rigorously, but it's a good starting point for a more robust plugin. Next steps would be to experiment with embeddings and trainning the model with example queries. Same query may run unsuccesfully some times but successfully when run again or i would get many network errores on large responses. Im still trying to figure out a more robust plugin response that can handle all cases.
 
 ### Resources
