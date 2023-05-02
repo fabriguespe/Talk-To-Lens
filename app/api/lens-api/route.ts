@@ -27,16 +27,12 @@ function extractCodeBlocks(text: string) {
 }
 
 async function texttosql(question: String) {
+  // OpenAI API
   const configuration = new Configuration({ apiKey: JSON.parse(openaikey).key });
   delete configuration.baseOptions.headers['User-Agent'];
   const openai = new OpenAIApi(configuration);
 
-  /*const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: context + "\n\nQuestion: " + question
-  });
-  
-  //let msg = response.data.choices[0].text*/
+  //this method is used to create a chat with the question and the context
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages:[
@@ -44,10 +40,11 @@ async function texttosql(question: String) {
       {"role": "user", "content":question }
     ]
   });
+  //extract the response from the chat
   let msg=response.data.choices[0].message.content
   return msg
-
 }
+
 async function  escapeJson(json: string) {
   return json.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')
 }
